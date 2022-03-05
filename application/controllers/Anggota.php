@@ -141,14 +141,14 @@ class Anggota extends CI_Controller {
     }
 	function karyawan_perbulan(){
         $tanggal = $this->input->post('tanggal');
-		$karyawan = $this->input->post('karyawan');
+		//$karyawan = $this->input->post('karyawan');
 		$tanggal1 = explode('-', $tanggal);
 		$bulan =  $tanggal1[0];
         $tahun =  $tanggal1[1];	
         $this->load->library('f_pdf');
 		$data["bulan"] =  $tanggal1[0];
         $data["tahun"] =  $tanggal1[1];		
-        $data['karyawan'] = $this->m_data->ambil_perbulan($karyawan,$bulan,$tahun)->result();
+        $data['karyawan'] = $this->m_data->ambil_perbulan($bulan,$tahun)->result();
         $this->load->view('admin/pdf/v_karyawan_perbulan',$data); //memanggil view 
     }
 
