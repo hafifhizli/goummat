@@ -17,7 +17,7 @@ class PDF extends FPDF
             $this->setFont('Arial', '', 14);
             $this->setFillColor(255, 255, 255);
             $this->cell(25, 6, '', 0, 0, 'C', 0);
-            $this->cell(100, 6, 'Laporan Absensi Karyawan Perhari', 0, 1, 'L', 1);
+            $this->cell(100, 6, 'Laporan Absensi Karyawan Pertahun', 0, 1, 'L', 1);
             $this->cell(25, 6, '', 0, 0, 'C', 0);
             $this->cell(100, 6, "", 0, 1, 'L', 1);
             $this->cell(25, 6, '', 0, 0, 'C', 0);
@@ -44,7 +44,7 @@ class PDF extends FPDF
         }
     }
 
-    function Content($karyawan, $tahun, $bulan)
+    function Content($karyawan, $tahun)
     {
         $ya = 46;
         $rw = 6;
@@ -52,44 +52,52 @@ class PDF extends FPDF
 
         $this->setFont('Arial', 'B', 9);
         $this->setFillColor(255, 255, 255);
-        $this->cell(20, 10, 'Bulan : ', 0, 0, 'C', 1);
-        $this->cell(15, 10, $bulan, 0, 0, 'C', 1);
+        $this->Ln(5);
+        $this->cell(20, 0, 'Nama : ', 0, 0, 'L', 1);
+        $this->cell(20, 0, $karyawan[0]->nama, 0, 0, 'L', 1);
+        $this->cell(20, 0, 'Gampong : ', 0, 0, 'L', 1);
+        $this->cell(20, 0, $karyawan[0]->gampong, 0, 0, 'L', 1);
+        $this->Ln(5);
+        $this->cell(20, 0, 'Jabatan : ', 0, 0, 'L', 1);
+        $this->cell(20, 0, $karyawan[0]->jabatan, 0, 0, 'L', 1);
+        $this->cell(20, 0, 'Kecamatan : ', 0, 0, 'L', 1);
+        $this->cell(20, 0, $karyawan[0]->kecamatan, 0, 0, 'L', 1);
+        $this->Ln(5);
+        $this->cell(40, 0, '', 0, 0, 'L', 1);
+        $this->cell(20, 0, 'Kabupaten : ', 0, 0, 'L', 1);
+        $this->cell(20, 0, $karyawan[0]->kabupaten, 0, 0, 'L', 1);
+        $this->Ln(5);
+
+        $this->Ln(5);
+
+
+
         $this->cell(15, 10, 'Tahun : ', 0, 0, 'C', 1);
         $this->cell(15, 10, $tahun, 0, 1, 'C', 1);
 
         $this->setFont('Arial', 'B', 9);
         $this->setFillColor(230, 230, 200);
-        $this->cell(10, 10, 'No.', 1, 0, 'C', 1);
-        $this->cell(30, 10, 'NAMA', 1, 0, 'C', 1);
-        $this->cell(24, 10, 'GAMPONG', 1, 0, 'C', 1);
-        $this->cell(24, 10, 'KECAMATAN', 1, 0, 'C', 1);
-        $this->cell(24, 10, 'KABUPATEN', 1, 0, 'C', 1);
-        $this->cell(24, 10, 'JABATAN', 1, 0, 'C', 1);
-        $this->cell(33, 10, 'WAKTU', 1, 0, 'C', 1);
-        $this->cell(24, 10, 'STATUS', 1, 1, 'C', 1);
+        $this->cell(20, 10, 'No.', 1, 0, 'C', 1);
+        $this->cell(43, 10, 'WAKTU', 1, 0, 'C', 1);
+        $this->cell(54, 10, 'STATUS', 1, 1, 'C', 1);
 
 
 
         foreach ($karyawan as $key) {
             $this->setFont('Arial', '', 7);
             $this->setFillColor(255, 255, 255);
-            $this->cell(10, 10, $no, 1, 0, 'C', 1);
-            $this->cell(30, 10, $key->nama, 1, 0, 'C', 1);
-            $this->cell(24, 10, $key->gampong, 1, 0, 'C', 1);
-            $this->cell(24, 10, $key->kecamatan, 1, 0, 'C', 1);
-            $this->cell(24, 10, 'Bireun', 1, 0, 'C', 1);
-            $this->cell(24, 10, $key->jabatan, 1, 0, 'C', 1);
-            $this->cell(33, 10, $key->time, 1, 0, 'C', 1);
+            $this->cell(20, 10, $no, 1, 0, 'C', 1);
+            $this->cell(43, 10, $key->time, 1, 0, 'C', 1);
             if ($key->id_status == "1") {
-                $this->cell(24, 10, "Hadir", 1, 1, 'C', 1);
+                $this->cell(54, 10, "Hadir", 1, 1, 'C', 1);
             } elseif ($key->id_status == "2") {
-                $this->cell(24, 10, "Telat", 1, 1, 'C', 1);
+                $this->cell(54, 10, "Telat", 1, 1, 'C', 1);
             } elseif ($key->id_status == "3") {
-                $this->cell(24, 10, "Izin", 1, 1, 'C', 1);
+                $this->cell(54, 10, "Izin", 1, 1, 'C', 1);
             } elseif ($key->id_status == "4") {
-                $this->cell(24, 10, "Sakit", 1, 1, 'C', 1);
+                $this->cell(54, 10, "Sakit", 1, 1, 'C', 1);
             } elseif ($key->id_status == "5") {
-                $this->cell(24, 10, "Alpha", 1, 1, 'C', 1);
+                $this->cell(54, 10, "Alpha", 1, 1, 'C', 1);
             }
 
 
@@ -120,5 +128,6 @@ $pdf->AddPage();
 //$pdf->SetFont('Times','',12);
 //for($i=1;$i<=40;$i++)
 //    $pdf->Cell(0,10,'Printing line number '.$i,0,1);
-$pdf->Content($karyawan, $tahun, $bulan);
+$pdf->SetMargins(50, 0, 0);
+$pdf->Content($karyawan, $tahun);
 $pdf->Output();

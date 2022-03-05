@@ -5,7 +5,7 @@
     </div>
     <div class="card-body ">
 
-      <br/>
+      <br />
 
       <div class="row justify-content-center">
         <div class="col-md-4">
@@ -15,14 +15,17 @@
             </div>
             <div class="card-body">
 
-            <form method="post" action="<?php echo base_url().'anggota/karyawan_perhari'?>">
-              <div class="form-group">
-              <label class="font-weight-bold" >Hari,Bulan dan Tahun</label>
+              <form method="post" action="<?php echo base_url() . 'anggota/karyawan_perhari' ?>">
+                <div class="form-group">
+                  <label class="font-weight-bold">Hari,Bulan dan Tahun</label>
+                  <input type="date" class="form-control" name="tanggal" id="" />
+                  <!-- <select name="karyawan" id="karyawan" class="form-control mt-2">
+                    <option value="">- Pilih Karyawan</option>
+                    <option value="all"> Semua Karyawan </option>
+                  </select> -->
+                </div>
 
-              <input type="date" class="form-control" name="tanggal" id="" /> 
-</div> 
-              
-               <center> <input type="submit" class="btn btn-primary" value="Filter"></center>
+                <center> <input type="submit" class="btn btn-primary" value="Filter"></center>
               </form>
 
             </div>
@@ -31,8 +34,8 @@
       </div>
 
 
-      
-    
-  <!-- Bootstrap Date-Picker Plugin -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+
+      <!-- Bootstrap Date-Picker Plugin -->
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
