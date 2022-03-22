@@ -39,8 +39,10 @@ class Admink extends CI_Controller
 
 	function editgaji()
 	{
+		$where = array('id' => $id);
+		$data['jabatan'] = $this->m_data->edit_data($where, 'tm_jabatan')->result();
 		$this->load->view('admink/v_header');
-		$this->load->view('admink/v_edit_gaji');
+		$this->load->view('admink/v_edit_gaji',$data);
 		$this->load->view('admink/v_footer');
 	}
 }

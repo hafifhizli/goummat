@@ -23,7 +23,7 @@
             <td><?php echo $row->jabatan; ?></td>
             <td><?php echo $row->gaji; ?></td>
             <td>
-                <a href="#" class="btn btn-primary">Edit</a>
+            <a href="<?php echo base_url().'admink/editgaji/'.$row->id; ?>" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i> Edit</a>
             </td>
           </tr>
           <?php
