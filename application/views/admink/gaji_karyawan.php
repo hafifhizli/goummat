@@ -21,7 +21,7 @@
           <tr>
             <td><?php echo $no++; ?></td>
             <td><?php echo $row->username; ?></td>
-            <td><?php echo $row->id_jabatan; ?></td>
+            <td><?php echo $row->jabatan; ?></td>
             <td><?php echo rupiah($row->gaji); ?></td>
             <td>
             </td>
