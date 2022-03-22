@@ -51,6 +51,7 @@
               <option value="kelas">Ketua Kelas</option>
               <option value="ketua_kecamatan">Admin Kecamatan</option>
                 <option value="admin">Admin</option>
+              <option value="admink">Admin Keuangan</option>
               </select>
             </div>
             <button type="submit" class="btn btn-primary">Login</button>

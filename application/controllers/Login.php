@@ -132,10 +132,28 @@ else if($sebagai == "kelas"){
 		redirect(base_url().'login?alert=gagal');
 	}
 
-		}else{
+		}
+		else if ($sebagai = "admink") {
+			$cek = $this->m_data->cek_login('admin_keuangan', $where)->num_rows();
+			$data = $this->m_data->cek_login('admin_keuangan',$where)->row();
+	
+			if ($cek > 0 ) {
+				$data_session = array(
+					'id' => $data->id,
+					'username' => $data->username,
+					'status' => 'admink',
+					'redir' => 'admink/keuangan'
+				);	
+				$this->session->set_userdata($data_session);
+				redirect(base_url().'admink');
+			}else{
+				redirect(base_url().'login?alert=gagal');
+			}
+			}
+		}
+		else{
 			$this->load->view('v_login');
 		}
 
 	}
-}
 }

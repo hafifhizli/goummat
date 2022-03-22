@@ -552,4 +552,10 @@ class M_data extends CI_Model
 			->get();
 		return $query;
 	}
+
+	function get_data_jabatan($table)
+	{
+		$query = $this->db->query("SELECT * from jabatan");
+		return $query;
+	}
 }
