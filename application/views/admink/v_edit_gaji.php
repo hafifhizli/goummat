@@ -4,18 +4,30 @@
       <h4>Edit Jabatan</h4>
     </div>
     <div class="card-body">
-      <a href="<?php echo base_url().'admin/ebook' ?>" class='btn btn-sm btn-light btn-outline-dark pull-right'><i class="fa fa-arrow-left"></i> Kembali</a>
       <br/>
       <br/>
+
+      <?php foreach($jabatan as $row1){ ?>
         <form method="post" action="<?php echo base_url().'admink/updategaji'; ?>">
           <div class="form-group">
-            <label class="font-weight-bold" for="kelas">Kelas</label>
-            <input type="hidden" name="id" value="<?php echo $jabatan['id']; ?>">
-            <input type="text" class="form-control" name="gaji" placeholder="Masukkan Kelas" required="required" value="<?php echo $jabatan['jabatan']; ?>">
-            <input type="number" class="form-control" name="gaji" placeholder="Masukkan Kelas" required="required" value="<?php echo $jabatan['gaji']; ?>">
+            <input type="hidden" name="id" value="<?php echo $row1->id; ?>">
+            <label for="jabatan" class="form-label">
+                Jabatan
+            </label>
+            <input type="text" class="form-control mb-3" name="jabatan" required="required" value="<?php echo $row1->jabatan; ?>">
+            <label for="jabatan" class="form-label">
+                Gaji
+            </label>
+            <input type="number" class="form-control" name="gaji" required="required" value="<?php echo $row1->gaji; ?>">
           </div>
+
           <input type="submit" class="btn btn-primary" value="Simpan">
+          <button type="button" onclick="history.back(-1)" class="btn btn-dark">Kembali</button>
+          
         </form>
+
+      <?php } ?>
+
     </div>
   </div>
 </div>
