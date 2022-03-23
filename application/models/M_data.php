@@ -558,4 +558,11 @@ class M_data extends CI_Model
 		$query = $this->db->query("SELECT * from jabatan");
 		return $query;
 	}
+	function gajikaryawan(){
+		$this->db->select('*');
+		$this->db->from('tm_jabatan');
+		$this->db->join('tm_karyawan','tm_karyawan.id_jabatan = tm_jabatan.id');      
+		$query = $this->db->get();
+		return $query;
+	 }
 }
