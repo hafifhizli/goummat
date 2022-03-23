@@ -36,6 +36,13 @@ class Admink extends CI_Controller
 		$this->load->view('admink/v_gaji', $data);
 		$this->load->view('admink/v_footer');
 	}
+	function iuran()
+	{
+		$this->load->view('admink/v_header');
+		$this->load->view('admink/v_iuran');
+		$this->load->view('admink/v_footer');
+	}
+
 
 	function editgaji()
 	{

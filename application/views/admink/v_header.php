@@ -46,6 +46,10 @@
         <li class="nav-item">
         <a class="nav-link" href="<?php echo base_url() . 'admink/gaji' ?>">Gaji</a>
       </li>
+			<li class="nav-item">
+        <a class="nav-link" href="<?php echo base_url() . 'admink/iuran' ?>">Iuran</a>
+      </li>
+
 
         </ul>
         <!-- </li> -->
