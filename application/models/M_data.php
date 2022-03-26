@@ -565,4 +565,13 @@ class M_data extends CI_Model
 		$query = $this->db->get();
 		return $query;
 	 }
+
+	 function admin_pusat($id)
+	 {
+		$this->db->select('*');
+		$this->db->from('tm_jabatan');
+		$this->db->join('tm_karyawan','tm_karyawan.id_jabatan = tm_jabatan.id');    
+		$query = $this->db->get()->where('id_jabatan' == $id);
+		return $query; 
+	 }
 }

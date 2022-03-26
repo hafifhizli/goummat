@@ -81,4 +81,14 @@ class Admink extends CI_Controller
 		$this->load->view('admink/gaji_karyawan',$data);
 		$this->load->view('admink/v_footer');
 	}
+
+	function admin_pusat()
+	{
+		$data['jabatan'] = $this->m_data->get_data('tm_jabatan')->result();
+		$data['karyawan'] = $this->m_data->get_data('tm_karyawan')->result();
+		$data['gaji'] = $this->m_data->get_data('tm_karywan', 'id_jabatan' == 1)->result();
+		$this->load->view('admink/v_header');
+		$this->load->view('admink/v_list_admin', $data);
+		$this->load->view('admink/v_footer');
+	}
 }
