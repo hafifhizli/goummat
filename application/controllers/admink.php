@@ -93,17 +93,25 @@ class Admink extends CI_Controller
 
 	function tambahiuran()
 	{
-
+		$data['kecamatan'] = $this->kecamatanModel->view();
 		$this->load->view('admink/v_header');
-		$this->load->view('admink/v_tambah_iuran');
+		$this->load->view('admink/v_tambah_iuran', $data);
 		$this->load->view('admink/v_footer');
 	}
 
 	function dataiuran()
 	{
-
+		$data['kecamatan'] = $this->kecamatanModel->view();
 		$this->load->view('admink/v_header');
-		$this->load->view('admink/v_data_iuran');
+		$this->load->view('admink/v_data_iuran', $data);
+		$this->load->view('admink/v_footer');
+	}
+
+	function listdataiuran()
+	{
+		$data['kecamatan'] = $this->kecamatanModel->view();
+		$this->load->view('admink/v_header', $data);
+		$this->load->view('admink/v_list_data_iuran');
 		$this->load->view('admink/v_footer');
 	}
 
@@ -112,6 +120,14 @@ class Admink extends CI_Controller
 
 		$this->load->view('admink/v_header');
 		$this->load->view('admink/v_iuran_wajib');
+		$this->load->view('admink/v_footer');
+	}
+
+	function editiuranwajib()
+	{
+
+		$this->load->view('admink/v_header');
+		$this->load->view('admink/v_edit_iuran_wajib');
 		$this->load->view('admink/v_footer');
 	}
 }
