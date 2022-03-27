@@ -24,15 +24,6 @@
 						<option value="">- Pilih Gampong</option>
 					</select>
 				</div>
-				<div class="form-group">
-
-					<label class="font-weight-bold">Tahap</label>
-					<select name="id_gampong" id="gampong" class="form-control">
-						<option value="">- Pilih Tahap</option>
-						<option value="1">Tahap 1</option>
-						<option value="2">Tahap 2</option>
-					</select>
-				</div>
 				<div class="container text-center">
 					<input type="submit" class="btn btn-primary" value="Tambah">
 				</div>

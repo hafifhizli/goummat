@@ -21,9 +21,7 @@
 						<span class="input-group-text" id="basic-addon1">Rp.</span>
 						<input type="number" class="form-control" placeholder="00" aria-label="Jumlah Iuran" aria-describedby="basic-addon1">
 					</div>
-
 				</div>
-
 				<input type="submit" class="btn btn-primary" value="Simpan">
 				<button type="button" onclick="history.back(-1)" class="btn btn-dark">Kembali</button>
 

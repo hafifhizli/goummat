@@ -15,10 +15,10 @@
 						<th scope="col">No</th>
 						<th scope="col">ID Anggota</th>
 						<th scope="col">Nama</th>
-						<th scope="col">Gampong</th>
-						<th scope="col">Kecamatan</th>
-						<th scope="col">Total Iuran Masuk</th>
+						<th scope="col">Tahap 1</th>
+						<th scope="col">Tahap 2</th>
 						<th scope="col">Total Iuran Belum Dibayar</th>
+						<th scope="col">Status</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -31,6 +31,7 @@
 						<td></td>
 						<td></td>
 						<td></td>
+
 					</tr>
 
 				</tbody>
