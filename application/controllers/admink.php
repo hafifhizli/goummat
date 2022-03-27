@@ -3,7 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Admink extends CI_Controller
 {
-    private $limit = 10;
+	private $limit = 10;
 	var $module_name = 'anggota';
 
 	function __construct()
@@ -25,11 +25,12 @@ class Admink extends CI_Controller
 		$this->load->model('Modelanggota', 'anggota2');
 	}
 
-    function index(){
-        $this->load->view('admink/v_header');
-        $this->load->view('admink/dashboard');
-        $this->load->view('admink/v_footer');
-    }
+	function index()
+	{
+		$this->load->view('admink/v_header');
+		$this->load->view('admink/dashboard');
+		$this->load->view('admink/v_footer');
+	}
 
 	function gaji()
 	{
@@ -51,10 +52,10 @@ class Admink extends CI_Controller
 		$where = array('id' => $id);
 		$data['jabatan'] = $this->m_data->edit_data($where, 'tm_jabatan')->result();
 		$this->load->view('admink/v_header');
-		$this->load->view('admink/v_edit_gaji',$data);
+		$this->load->view('admink/v_edit_gaji', $data);
 		$this->load->view('admink/v_footer');
 	}
-}
+
 
 	function updategaji()
 	{
@@ -86,7 +87,31 @@ class Admink extends CI_Controller
 		$data['karyawan'] = $this->m_data->get_data('tm_karyawan')->result();
 		$data['gaji'] = $this->m_data->gajikaryawan()->result();
 		$this->load->view('admink/v_header');
-		$this->load->view('admink/gaji_karyawan',$data);
+		$this->load->view('admink/gaji_karyawan', $data);
 		$this->load->view('admink/v_footer');
 	}
 
+	function tambahiuran()
+	{
+
+		$this->load->view('admink/v_header');
+		$this->load->view('admink/v_tambah_iuran');
+		$this->load->view('admink/v_footer');
+	}
+
+	function dataiuran()
+	{
+
+		$this->load->view('admink/v_header');
+		$this->load->view('admink/v_data_iuran');
+		$this->load->view('admink/v_footer');
+	}
+
+	function iuranwajib()
+	{
+
+		$this->load->view('admink/v_header');
+		$this->load->view('admink/v_iuran_wajib');
+		$this->load->view('admink/v_footer');
+	}
+}
