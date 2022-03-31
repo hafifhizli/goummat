@@ -2052,5 +2052,4 @@ class Admin extends CI_Controller
 		$this->load->view('admin/absen_event/v_table_event', $data);
 		$this->load->view('admin/v_footer');
 	}
-
 }

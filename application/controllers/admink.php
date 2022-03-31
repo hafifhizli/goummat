@@ -133,13 +133,45 @@ class Admink extends CI_Controller
 		$this->load->view('admink/v_footer');
 	}
 
-	function listdataiuran()
+	function iuran_laporan()
 	{
 		$data['kecamatan'] = $this->kecamatanModel->view();
-		$this->load->view('admink/v_header', $data);
-		$this->load->view('admink/v_list_data_iuran');
+		if (isset($_GET['id_gampong']) && isset($_GET['tanggal_iuran'])) {
+			$mulai = $this->input->get('tanggal_iuran');
+			$id_gampong = $this->input->get('id_gampong');
+			$tanggal1 = explode('-', $mulai);
+			$bulan = $tanggal1[0];
+			$tahun   = $tanggal1[1];
+			$data['iuran'] = $this->db->query("SELECT * from iuran WHERE (id_kelas = '$id_gampong'  AND MONTH(tanggal_iuran) = '$bulan' AND YEAR(tanggal_iuran) = '$tahun') order by iuran_id desc")->result();
+		} else {
+			$data['iuran'] = $this->db->query("SELECT * from iuran order by iuran_id desc")->result();
+		}
+		$this->load->view('admink/v_header');
+		$this->load->view('admink/v_iuran_laporan', $data);
 		$this->load->view('admink/v_footer');
 	}
+
+
+	function listdataiuran()
+	{
+		if (isset($_GET['id_gampong']) && isset($_GET['tanggal_iuran'])) {
+			$mulai = $this->input->get('tanggal_iuran');
+			$id_gampong = $this->input->get('id_gampong');
+			$tanggal1 = explode('-', $mulai);
+			$bulan = $tanggal1[0];
+			$tahun   = $tanggal1[1];
+			$data['iuran'] = $this->db->query("SELECT * from iuran WHERE (id_kelas = '$id_gampong'  AND MONTH(tanggal_iuran) = '$bulan' AND YEAR(tanggal_iuran) = '$tahun') order by iuran_id desc")->result();
+		} else {
+			$data['iuran'] = $this->db->query("SELECT * from iuran order by iuran_id desc")->result();
+		}
+
+		$data['kecamatan'] = $this->kecamatanModel->view();
+		$this->load->view('admink/v_header');
+		$this->load->view('admink/v_list_data_iuran', $data);
+		$this->load->view('admink/v_footer');
+	}
+
+
 
 	function iuranwajib()
 	{

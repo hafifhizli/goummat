@@ -23,11 +23,8 @@
 					</div>
 					<input type="submit" class="btn btn-primary" value="Simpan">
 					<button type="button" onclick="history.back(-1)" class="btn btn-dark">Kembali</button>
-
 				</form>
 			<?php } ?>
-
-
 		</div>
 	</div>
 </div>

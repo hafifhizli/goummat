@@ -1,14 +1,15 @@
-<div class="container">
+<div class="container ">
+
 	<div class="card">
 		<div class="card-header text-center">
 			<h4>Data Iuran</h4>
 		</div>
 		<div class="card-body">
 
-			<form method="post" action="<?php echo base_url() . 'admink/listdataiuran/'; ?>">
+			<form method="get" action="<?php echo base_url() . 'admink/listdataiuran'; ?>">
 				<div class="form-group">
 					<label class="font-weight-bold">Kecamatan</label>
-					<select name="id_kecamatan" id="kecamatan" class="form-control">
+					<select required name="id_kecamatan" id="kecamatan" class="form-control">
 						<option value="">- Pilih Kecamatan</option>
 						<?php
 						foreach ($kecamatan as $data) { // Lakukan looping pada variabel siswa dari controller
@@ -20,19 +21,27 @@
 				<div class="form-group">
 
 					<label class="font-weight-bold">Gampong</label>
-					<select name="id_gampong" id="gampong" class="form-control">
+					<select required name="id_gampong" id="gampong" class="form-control">
 						<option value="">- Pilih Gampong</option>
 					</select>
-				</div>
-				<div class="container text-center">
-					<input type="submit" class="btn btn-primary" value="Tambah">
-				</div>
-			</form>
 
+				</div>
+				<div class="form-group">
+					<label class="font-weight-bold">Bulan dan Tahun</label>
+					<input required name="tanggal_iuran" required type="text" value="02-2021" class="form-control" aria-label="Jumlah Iuran" aria-describedby="basic-addon1">
+				</div>
+
+				<div class="container text-center">
+					<input type="submit" class="btn btn-primary" value="Filter">
+
+				</div>
+
+			</form>
 		</div>
 	</div>
+
 </div>
-<script src="<?php echo base_url("js/jquery.min.js"); ?>" type="text/javascript"></script>
+
 
 <script>
 	$(document).ready(function() { // Ketika halaman sudah siap (sudah selesai di load)
@@ -69,9 +78,6 @@
 		});
 	});
 </script>
-
-
-<!-- Bootstrap Date-Picker Plugin -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
 

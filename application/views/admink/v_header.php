@@ -59,7 +59,7 @@
 
 						<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 							<li><a class="dropdown-item" href="<?php echo base_url() . 'admink/tambahiuran' ?>">Tambah Iuran</a></li>
-							<li><a class="dropdown-item" href="<?php echo base_url() . 'admink/dataiuran' ?>">Data Iuran</a></li>
+							<li><a class="dropdown-item" href="<?php echo base_url() . 'admink/iuran_laporan' ?>">Data Iuran</a></li>
 							<li><a class="dropdown-item" href="<?php echo base_url() . 'admink/iuranwajib' ?>">Jumlah Iuran Wajib</a></li>
 						</ul>
 					</div>
