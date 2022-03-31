@@ -21,7 +21,6 @@
 				<th>Nama</th>
 				<th>Tanggal Iuran</th>
 				<th>Tahap Pertama (Januari - Juni)</th>
-				<th>Tahap Kedua (Juli - Desember)</th>
 				<th>Jumlah yang Belum Dibayar</th>
 				<th>Status</th>
 			</tr>
@@ -29,15 +28,14 @@
 		<tbody>
 			<?php
 			$no = 1;
-			foreach ($iuran as $p) {
+			foreach ($dtiuran as $p) {
 			?>
 				<tr>
-					<td><?php echo $no++; ?></td>
-					<td><?php echo $p->nama; ?></td>
-					<td><?php echo date('d-m-Y', strtotime($p->tanggal_iuran)); ?></td>
-					<td><?php echo  number_format($p->jumlah_iuran, 0, ',', '.'); ?></td>
-					<td><?php echo  number_format($p->jumlah_iuran, 0, ',', '.'); ?></td>
-					<td></td>
+					<td><?= $no++; ?></td>
+					<td><?= $p->nama; ?></td>
+					<td><?= date('Y-m-d', strtotime($p->tanggal_iuran)); ?></td>
+					<td><?=  rupiah($p->jumlah_iuran); ?></td>
+					<td><?= rupiah($iuran_wajib[0]['smt_satu'] - $p->jumlah_iuran) ;?></td>
 					<td></td>
 				</tr>
 			<?php

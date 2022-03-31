@@ -590,4 +590,14 @@ class M_data extends CI_Model
 		$query = $this->db->query("SELECT * from tm_iuran_wajib");
 		return $query;
 	}
+
+	function get_between($start,$end,$id_gampong)
+	{
+		$query = $this->db->select('*')
+		->from('iuran')
+		->where('tanggal_iuran BETWEEN "'. date('Y-m-d', strtotime($start)). '" and "'. date('Y-m-d', strtotime($end)).'"')
+		->where('id_kelas', $id_gampong)
+		->get();
+		return $query;
+	}
 }

@@ -27,8 +27,16 @@
 
 				</div>
 				<div class="form-group">
-					<label class="font-weight-bold">Bulan dan Tahun</label>
-					<input required name="tanggal_iuran" required type="text" value="02-2021" class="form-control" aria-label="Jumlah Iuran" aria-describedby="basic-addon1">
+					<label class="font-weight-bold">Tahun</label>
+					<input class="form-control" type="text" name="year" id="year">
+				</div>
+				<div class="form-group">
+					<label class="font-weight-bold">Pilih Tahap</label>
+					<select class="form-select" name="semester" id="semester">
+						<option selected>-- Pilih Tahap --</option>
+						<option value="1">Tahap 1 | Januari - Juni</option>
+						<option value="2">Tahap 2 | Juli - Desember</option>
+					</select>
 				</div>
 
 				<div class="container text-center">

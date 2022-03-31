@@ -152,18 +152,28 @@ class Admink extends CI_Controller
 
 	function listdataiuran()
 	{
-		if (isset($_GET['id_gampong']) && isset($_GET['tanggal_iuran'])) {
-			$mulai = $this->input->get('tanggal_iuran');
-			$id_gampong = $this->input->get('id_gampong');
-			$tanggal1 = explode('-', $mulai);
-			$bulan = $tanggal1[0];
-			$tahun   = $tanggal1[1];
-			$data['iuran'] = $this->db->query("SELECT * from iuran WHERE (id_kelas = '$id_gampong'  AND MONTH(tanggal_iuran) = '$bulan' AND YEAR(tanggal_iuran) = '$tahun') order by iuran_id desc")->result();
+		$this->load->helper('rupiah_helper');
+		// if (isset($_GET['id_gampong']) && isset($_GET['tanggal_iuran'])) {
+		// 	$mulai = $this->input->get('tanggal_iuran');
+		// 	$id_gampong = $this->input->get('id_gampong');
+		// 	$tanggal1 = explode('-', $mulai);
+		// 	$bulan = $tanggal1[0];
+		// 	$tahun   = $tanggal1[1];
+		// 	$data['iuran'] = $this->db->query("SELECT * from iuran WHERE (id_kelas = '$id_gampong'  AND MONTH(tanggal_iuran) = '$bulan' AND YEAR(tanggal_iuran) = '$tahun') order by iuran_id desc")->result();
+		// } else {
+		// 	$data['iuran'] = $this->db->query("SELECT * from iuran order by iuran_id desc")->result();
+		// }
+		$year = $this->input->get('year');
+		if ($_REQUEST['semester'] == '1'){
+			$start = $year.'-01-01';
+			$end = $year.'-06-30';
 		} else {
-			$data['iuran'] = $this->db->query("SELECT * from iuran order by iuran_id desc")->result();
+			$start = $year.'-07-01';
+			$end = $year.'-12-31';
 		}
-
-		$data['kecamatan'] = $this->kecamatanModel->view();
+		$id_gampong = $this->input->get('id_gampong');
+		$data['iuran_wajib'] = $this->m_data->get_data('tm_iuran_wajib')->result_array();
+		$data['dtiuran'] = $this->m_data->get_between($start,$end,$id_gampong)->result();
 		$this->load->view('admink/v_header');
 		$this->load->view('admink/v_list_data_iuran', $data);
 		$this->load->view('admink/v_footer');
@@ -210,4 +220,5 @@ class Admink extends CI_Controller
 		// mengalihkan halaman ke halaman data kelas
 		redirect(base_url() . 'admink/iuranwajib');
 	}
+
 }
