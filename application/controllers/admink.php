@@ -19,7 +19,6 @@ class Admink extends CI_Controller
 		$this->load->model('gampongModel');
 		$this->load->model('persiswaModel');
 		$this->load->helper('rupiah_helper');
-
 		$this->load->model('SiswaModel'); // Load model SiswaModel.php yang ada di folder models
 		$this->load->model(array('M_pdfanggota' => 'anggota'));
 		$this->load->model('Modelanggota', 'anggota2');
@@ -54,7 +53,6 @@ class Admink extends CI_Controller
 		$this->load->view('admink/v_edit_gaji',$data);
 		$this->load->view('admink/v_footer');
 	}
-}
 
 	function updategaji()
 	{
@@ -89,4 +87,4 @@ class Admink extends CI_Controller
 		$this->load->view('admink/gaji_karyawan',$data);
 		$this->load->view('admink/v_footer');
 	}
-
+}

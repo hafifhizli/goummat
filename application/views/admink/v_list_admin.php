@@ -16,13 +16,11 @@
   <tbody>
   <?php
         $no = 1;
-        foreach($gaji as $row){
+        foreach($admin as $row){
           ?>
           <tr>
             <td><?php echo $no++; ?></td>
             <td><?php echo $row->username; ?></td>
-            <td><?php echo $row->jabatan; ?></td>
-            <td><?php echo rupiah($row->gaji); ?></td>
             <td>
             </td>
           </tr>
