@@ -10,6 +10,11 @@ class M_data extends CI_Model
 		return $this->db->get($table);
 	}
 
+	function select_data($table)
+	{
+		return $this->db->select('*')->from($table)->get();
+	}
+
 	//mobile
 	function cek_login_mobile($where)
 	{
@@ -558,20 +563,26 @@ class M_data extends CI_Model
 		$query = $this->db->query("SELECT * from jabatan");
 		return $query;
 	}
-	function gajikaryawan(){
+	function gajikaryawan()
+	{
 		$this->db->select('*');
 		$this->db->from('tm_jabatan');
-		$this->db->join('tm_karyawan','tm_karyawan.id_jabatan = tm_jabatan.id');      
+		$this->db->join('tm_karyawan', 'tm_karyawan.id_jabatan = tm_jabatan.id');
 		$query = $this->db->get();
 		return $query;
-	 }
+	}
 
-	 function admin_pusat($id)
-	 {
+	function admin_pusat($id)
+	{
 		$this->db->select('*');
 		$this->db->from('tm_jabatan');
-		$this->db->join('tm_karyawan','tm_karyawan.id_jabatan = tm_jabatan.id');    
+		$this->db->join('tm_karyawan', 'tm_karyawan.id_jabatan = tm_jabatan.id');
 		$query = $this->db->get()->where('id_jabatan' == $id);
-		return $query; 
-	 }
+		return $query;
+	}
+	function get_data_iuranwajib($table)
+	{
+		$query = $this->db->query("SELECT * from tm_iuran_wajib");
+		return $query;
+	}
 }

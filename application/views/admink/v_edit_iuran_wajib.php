@@ -6,26 +6,26 @@
 		<div class="card-body">
 			<br />
 			<br />
-
-
-			<form method="post" action="">
-				<div class="form-group">
-					<input type="hidden" name="id" value=">
-						<label for=" jabatan" class="form-label">
-					Tahap
-					</label>
-					<input readonly type="text" class="form-control mb-3" name="jabatan" required="required" value="">
-
-					<label class="font-weight-bold">Jumlah Iuran</label>
-					<div class="input-group mb-3">
-						<span class="input-group-text" id="basic-addon1">Rp.</span>
-						<input type="number" class="form-control" placeholder="00" aria-label="Jumlah Iuran" aria-describedby="basic-addon1">
+			<?php foreach ($iuran as $row1) { ?>
+				<form method="post" action="<?php echo base_url() . 'admink/editiuranwajibaksi/'; ?>">
+					<div class="form-group">
+						<input type="hidden" name="id" value="<?php echo $row1->id; ?>">
+						<label class="font-weight-bold">Semester 1 (Januari - Juni)</label>
+						<div class="input-group mb-3">
+							<span class="input-group-text" id="basic-addon1">Rp.</span>
+							<input name="smt_satu" type="number" class="form-control" aria-label="Jumlah Iuran" aria-describedby="basic-addon1" value="<?= $row1->smt_satu; ?>">
+						</div>
+						<label class="font-weight-bold">Semester 2 (Juli - Desember)</label>
+						<div class="input-group mb-3">
+							<span class="input-group-text" id="basic-addon1">Rp.</span>
+							<input name="smt_dua" type="number" class="form-control" aria-label="Jumlah Iuran" aria-describedby="basic-addon1" value="<?= $row1->smt_dua; ?>">
+						</div>
 					</div>
-				</div>
-				<input type="submit" class="btn btn-primary" value="Simpan">
-				<button type="button" onclick="history.back(-1)" class="btn btn-dark">Kembali</button>
+					<input type="submit" class="btn btn-primary" value="Simpan">
+					<button type="button" onclick="history.back(-1)" class="btn btn-dark">Kembali</button>
 
-			</form>
+				</form>
+			<?php } ?>
 
 
 		</div>

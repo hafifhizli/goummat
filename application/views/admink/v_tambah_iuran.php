@@ -1,14 +1,23 @@
 <div class="container">
+
+	<?php
+	echo
+	'<div class="alert alert-success alert-dismissible fade show" role="alert">' .
+		$this->session->flashdata('success') . '
+	
+	<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>';
+	?>
 	<div class="card">
 		<div class="card-header text-center">
 			<h4>Tambah Iuran</h4>
 		</div>
 		<div class="card-body">
 
-			<form method="post" action="">
+			<form method="post" action="<?php echo base_url() . 'admink/tambahiuranaksi'; ?>">
 				<div class="form-group">
 					<label class="font-weight-bold">Kecamatan</label>
-					<select name="id_kecamatan" id="kecamatan" class="form-control">
+					<select name="kecamatan" id="kecamatan" class="form-control" required>
 						<option value="">- Pilih Kecamatan</option>
 						<?php
 						foreach ($kecamatan as $data) { // Lakukan looping pada variabel siswa dari controller
@@ -20,27 +29,27 @@
 				<div class="form-group">
 
 					<label class="font-weight-bold">Gampong</label>
-					<select name="id_gampong" id="gampong" class="form-control">
+					<select name="gampong" id="gampong" class="form-control" required>
 						<option value="">- Pilih Gampong</option>
 					</select>
 				</div>
 				<div class="form-group">
 					<label class="font-weight-bold">Anggota</label>
-					<select name="persiswa" id="persiswa" class="form-control">
+					<select name="persiswa" id="persiswa" class="form-control" required>
 						<option value="">- Pilih Anggota</option>
 					</select>
 				</div>
 				<div class="form-group">
 					<label class="font-weight-bold">Tanggal</label>
 					<div class="input-group mb-3">
-						<input type="number" min="2015" max="2030" step="1" value="2022" class="form-control" aria-label="Jumlah Iuran" aria-describedby="basic-addon1">
+						<input name="tanggal_iuran" required type="date" min="2015" max="2030" step="1" value="2022" class="form-control" aria-label="Jumlah Iuran" aria-describedby="basic-addon1">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="font-weight-bold">Jumlah Iuran</label>
 					<div class="input-group mb-3">
 						<span class="input-group-text" id="basic-addon1">Rp.</span>
-						<input type="number" class="form-control" placeholder="00" aria-label="Jumlah Iuran" aria-describedby="basic-addon1">
+						<input name="jumlah_iuran" required type="number" class="form-control" placeholder="00" aria-label="Jumlah Iuran" aria-describedby="basic-addon1">
 					</div>
 				</div>
 				<div class="container text-center">

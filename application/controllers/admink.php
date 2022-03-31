@@ -39,12 +39,6 @@ class Admink extends CI_Controller
 		$this->load->view('admink/v_gaji', $data);
 		$this->load->view('admink/v_footer');
 	}
-	function iuran()
-	{
-		$this->load->view('admink/v_header');
-		$this->load->view('admink/v_iuran');
-		$this->load->view('admink/v_footer');
-	}
 
 
 	function editgaji($id)
@@ -93,10 +87,42 @@ class Admink extends CI_Controller
 
 	function tambahiuran()
 	{
+		$data['gampong'] = $this->gampongModel->viewBykec($this->session->userdata('ketua_kecamatan'));
 		$data['kecamatan'] = $this->kecamatanModel->view();
 		$this->load->view('admink/v_header');
 		$this->load->view('admink/v_tambah_iuran', $data);
 		$this->load->view('admink/v_footer');
+	}
+	function tambahiuranaksi()
+	{
+		$id_kecamatan = $this->input->post('kecamatan');
+		$id_gampong = $this->input->post('gampong');
+		$kecamatan = $this->kecamatanModel->kecamatan_name($id_kecamatan);
+		$gampong = $this->persiswaModel->gampong_name4($id_gampong);
+		$persiswa = $this->input->post('persiswa');
+		$tanggal_iuran = $this->input->post('tanggal_iuran');
+		$nama = $this->m_data->nama_anggota($persiswa);
+		$kelas = $this->input->post('kelas');
+		$jumlah_iuran = $this->input->post('jumlah_iuran');
+		$data = array();
+
+
+		$data = array(
+			'nama' => $nama,
+			'tanggal_iuran' => $tanggal_iuran,
+			'id_kelas' => $id_gampong,
+			'gampong' => $gampong,
+			'kecamatan' => $kecamatan,
+			'jumlah_iuran' => $jumlah_iuran,
+		);
+
+		// insert data ke database
+		$this->m_data->insert_data($data, 'iuran');
+		$this->session->set_flashdata('success', 'Data Berhasil ditambahkan');
+
+		// $this->session->set_userdata($data_session);
+		// mengalihkan halaman ke halaman data absen
+		redirect(base_url() . 'admink/tambahiuran');
 	}
 
 	function dataiuran()
@@ -117,17 +143,41 @@ class Admink extends CI_Controller
 
 	function iuranwajib()
 	{
-
+		$data['iuran'] = $this->m_data->select_data('tm_iuran_wajib')->result_array();
 		$this->load->view('admink/v_header');
-		$this->load->view('admink/v_iuran_wajib');
+		$this->load->view('admink/v_iuran_wajib', $data);
 		$this->load->view('admink/v_footer');
 	}
 
-	function editiuranwajib()
-	{
+	function editiuranwajib($id)
 
+	{
+		$where = array('id' => $id);
+		$data['iuran'] = $this->m_data->edit_data($where, 'tm_iuran_wajib')->result();
 		$this->load->view('admink/v_header');
-		$this->load->view('admink/v_edit_iuran_wajib');
+		$this->load->view('admink/v_edit_iuran_wajib', $data);
 		$this->load->view('admink/v_footer');
+	}
+
+	function editiuranwajibaksi()
+	{
+		$id = $this->input->post('id');
+		$tahapsatu = $this->input->post('smt_satu');
+		$tahapdua = $this->input->post('smt_dua');
+		$where = array(
+			'id' => $id
+		);
+
+		$data = array(
+			'smt_satu' => $tahapsatu,
+
+			'smt_dua' => $tahapdua
+		);
+
+		// update data ke database
+		$this->m_data->update_data($where, $data, 'tm_iuran_wajib');
+
+		// mengalihkan halaman ke halaman data kelas
+		redirect(base_url() . 'admink/iuranwajib');
 	}
 }
