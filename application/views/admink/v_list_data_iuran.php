@@ -19,8 +19,14 @@
 			<tr>
 				<th width="1%">No</th>
 				<th>Nama</th>
-				<th>Tanggal Iuran</th>
-				<th>Tahap Pertama (Januari - Juni)</th>
+				<?php
+				if ($_REQUEST['semester'] == 1) {
+					echo '<th>Tahap Pertama (Januari - Juni)</th>';
+				} else {
+					echo '<th>Tahap Kedua (Juli - Desember)</th>';
+				}
+				?>
+
 				<th>Jumlah yang Belum Dibayar</th>
 				<th>Status</th>
 			</tr>
@@ -33,10 +39,21 @@
 				<tr>
 					<td><?= $no++; ?></td>
 					<td><?= $p->nama; ?></td>
-					<td><?= date('Y-m-d', strtotime($p->tanggal_iuran)); ?></td>
-					<td><?=  rupiah($p->jumlah_iuran); ?></td>
-					<td><?= rupiah($iuran_wajib[0]['smt_satu'] - $p->jumlah_iuran) ;?></td>
-					<td></td>
+					<td><?= rupiah($p->total); ?></td>
+					<!-- <td><?= rupiah($iuran_wajib[0]['smt_satu'] - $p->total); ?></td> -->
+					<td><?php if ($p->total >= $iuran_wajib[0]['smt_satu']) {
+							echo '0';
+						} else {
+							echo rupiah($iuran_wajib[0]['smt_satu'] - $p->total);
+						}
+						?></td>
+					<td><?php if ($p->total >= $iuran_wajib[0]['smt_satu']) {
+							echo 'Lunas';
+						} else {
+							echo 'Belum Lunas';
+						}
+						?>
+					</td>
 				</tr>
 			<?php
 			}

@@ -572,11 +572,11 @@ class M_data extends CI_Model
 		return $query;
 	}
 
-	 function get_data_where($table)
-	 {
+	function get_data_where($table)
+	{
 		$query = $this->db->query("SELECT * from $table where id_jabatan = 1");
 		return $query;
-	 }
+	}
 	function admin_pusat($id)
 	{
 		$this->db->select('*');
@@ -591,13 +591,15 @@ class M_data extends CI_Model
 		return $query;
 	}
 
-	function get_between($start,$end,$id_gampong)
+	function get_between($start, $end, $id_gampong)
 	{
-		$query = $this->db->select('*')
-		->from('iuran')
-		->where('tanggal_iuran BETWEEN "'. date('Y-m-d', strtotime($start)). '" and "'. date('Y-m-d', strtotime($end)).'"')
-		->where('id_kelas', $id_gampong)
-		->get();
+		$query = $this->db->select_sum('jumlah_iuran', $alias = 'total')
+			->select('nama', 'tanggal_iuran')
+			->from('iuran')
+			->where('tanggal_iuran BETWEEN "' . date('Y-m-d', strtotime($start)) . '" and "' . date('Y-m-d', strtotime($end)) . '"')
+			->where('id_kelas', $id_gampong)
+			->group_by('id_anggota')
+			->get();
 		return $query;
 	}
 }

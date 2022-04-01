@@ -93,8 +93,10 @@ class Admink extends CI_Controller
 	}
 	function tambahiuranaksi()
 	{
+
 		$id_kecamatan = $this->input->post('kecamatan');
 		$id_gampong = $this->input->post('gampong');
+		$id_anggota = $this->input->post('persiswa');
 		$kecamatan = $this->kecamatanModel->kecamatan_name($id_kecamatan);
 		$gampong = $this->persiswaModel->gampong_name4($id_gampong);
 		$persiswa = $this->input->post('persiswa');
@@ -107,6 +109,7 @@ class Admink extends CI_Controller
 
 		$data = array(
 			'nama' => $nama,
+			'id_anggota' => $id_anggota,
 			'tanggal_iuran' => $tanggal_iuran,
 			'id_kelas' => $id_gampong,
 			'gampong' => $gampong,
@@ -164,16 +167,16 @@ class Admink extends CI_Controller
 		// 	$data['iuran'] = $this->db->query("SELECT * from iuran order by iuran_id desc")->result();
 		// }
 		$year = $this->input->get('year');
-		if ($_REQUEST['semester'] == '1'){
-			$start = $year.'-01-01';
-			$end = $year.'-06-30';
+		if ($_REQUEST['semester'] == '1') {
+			$start = $year . '-01-01';
+			$end = $year . '-06-30';
 		} else {
-			$start = $year.'-07-01';
-			$end = $year.'-12-31';
+			$start = $year . '-07-01';
+			$end = $year . '-12-31';
 		}
 		$id_gampong = $this->input->get('id_gampong');
 		$data['iuran_wajib'] = $this->m_data->get_data('tm_iuran_wajib')->result_array();
-		$data['dtiuran'] = $this->m_data->get_between($start,$end,$id_gampong)->result();
+		$data['dtiuran'] = $this->m_data->get_between($start, $end, $id_gampong)->result();
 		$this->load->view('admink/v_header');
 		$this->load->view('admink/v_list_data_iuran', $data);
 		$this->load->view('admink/v_footer');
@@ -220,5 +223,4 @@ class Admink extends CI_Controller
 		// mengalihkan halaman ke halaman data kelas
 		redirect(base_url() . 'admink/iuranwajib');
 	}
-
 }
