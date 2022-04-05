@@ -38,6 +38,27 @@ class Admink extends CI_Controller
 		$this->load->view('admink/v_gaji', $data);
 		$this->load->view('admink/v_footer');
 	}
+	
+	function gaji_jabatan($id)
+	{
+		$where = array('id_jabatan' => $id);
+		$data['jabatan'] = $this->m_data->get_data('tm_jabatan')->result();
+		$data['karyawan'] = $this->m_data->get_data('tm_karyawan')->result();		
+		$year = date('Y');
+		$start = $year.'-01-01';
+		$end = $year.'-12-31';
+		if ($this->uri->segment('3') == 3)
+		{
+		$data['jabatan'] = $this->m_data->get_data('tm_jabatan')->result();
+			$data['gaji'] = $this->m_data->iuran_kelas($start,$end)->result();
+		} else {
+			$data['gaji'] = $this->m_data->gajikaryawan($where)->result();
+		}
+		// var_dump($data['jabatan']['2']->gaji);
+		$this->load->view('admink/v_header');
+		$this->load->view('admink/v_jabatan_gaji', $data);
+		$this->load->view('admink/v_footer');
+	}
 
 
 	function editgaji($id)
@@ -80,6 +101,16 @@ class Admink extends CI_Controller
 		$data['gaji'] = $this->m_data->gajikaryawan()->result();
 		$this->load->view('admink/v_header');
 		$this->load->view('admink/gaji_karyawan', $data);
+		$this->load->view('admink/v_footer');
+	}
+
+	function admin_pusat()
+	{
+		$data['jabatan'] = $this->m_data->get_data('tm_jabatan')->result();
+		$data['karyawan'] = $this->m_data->get_data('tm_karyawan')->result();
+		$data['gaji'] = $this->m_data->gajikaryawan(1)->result();
+		$this->load->view('admink/v_header');
+		$this->load->view('admink/admin_pusat', $data);
 		$this->load->view('admink/v_footer');
 	}
 

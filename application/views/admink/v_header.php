@@ -49,9 +49,6 @@
 					<li class="nav-item">
 						<a class="nav-link" href="<?php echo base_url() . 'admink/gaji' ?>">Gaji</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="<?php echo base_url() . 'admink/karyawan' ?>">Karyawan</a>
-					</li>
 					<div class="dropdown">
 						<a class="nav-link" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
 							Iuran

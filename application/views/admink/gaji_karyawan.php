@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="card">
 		<div class="card-header">
-			<h2 class="card-title">Sistem Penggajian</h2>
+			<h2 class="card-title">Admin Pusat</h2>
 		</div>
 		<div class="card-body">
 			<table class="table">
@@ -23,8 +23,6 @@
 							<td><?php echo $row->username; ?></td>
 							<td><?php echo $row->jabatan; ?></td>
 							<td><?php echo rupiah($row->gaji); ?></td>
-							<td>
-							</td>
 						</tr>
 					<?php
 					}

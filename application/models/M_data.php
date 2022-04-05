@@ -563,28 +563,25 @@ class M_data extends CI_Model
 		$query = $this->db->query("SELECT * from jabatan");
 		return $query;
 	}
-	function gajikaryawan()
+	function gajikaryawan($where)
 	{
 		$this->db->select('*');
 		$this->db->from('tm_jabatan');
+		$this->db->where($where);
 		$this->db->join('tm_karyawan', 'tm_karyawan.id_jabatan = tm_jabatan.id');
 		$query = $this->db->get();
 		return $query;
 	}
 
-	function get_data_where($table)
+	function get_data_where($table,$where)
 	{
-		$query = $this->db->query("SELECT * from $table where id_jabatan = 1");
+		$query = $this->db->select('*')
+		->from($table)
+		->where($where)
+		->get();
 		return $query;
 	}
-	function admin_pusat($id)
-	{
-		$this->db->select('*');
-		$this->db->from('tm_jabatan');
-		$this->db->join('tm_karyawan', 'tm_karyawan.id_jabatan = tm_jabatan.id');
-		$query = $this->db->get()->where('id_jabatan' == $id);
-		return $query;
-	}
+
 	function get_data_iuranwajib($table)
 	{
 		$query = $this->db->query("SELECT * from tm_iuran_wajib");
@@ -602,4 +599,18 @@ class M_data extends CI_Model
 			->get();
 		return $query;
 	}
+
+	function iuran_kelas($start, $end)
+	{
+		$query =
+			$this->db->select('*')
+			->from('kelas')
+			->join('iuran','kelas.id=iuran.id_kelas')
+			->select_sum('jumlah_iuran', $alias = 'total')
+			->where('tanggal_iuran BETWEEN "' . date('Y-m-d', strtotime($start)) . '" and "' . date('Y-m-d', strtotime($end)) . '"')
+			->group_by('id_kelas')
+			->get();
+		return $query;
+	}
+
 }
