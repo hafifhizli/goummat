@@ -83,6 +83,30 @@ class iuran extends CI_Controller {
         $this->load->view('admin/pdf/v_iuran_pdf',$data); //memanggil view 
     }}
 
+    function export_pdf_iuran()
+    {
+        if(isset($_GET['id_kecamatan']) && isset($_GET['id_gampong'])){
+            $kecamatan = $this->input->get('id_kecamatan');
+            $id_gampong = $this->input->get('id_gampong');
+            $semester = $this->input->get('semester');
+            $year = $this->input->get('year');
+            if($semester == 1)
+            {
+                $start = $year . '-01-01';
+                $end = $year . '-06-30';
+            } else {
+                $start = $year . '-07-01';
+                $end = $year . '-12-30';
+            }
+            $this->load->library('f_pdf');
+            $data['kelas'] = $this->m_data->get_data_kelas_id2($id_gampong)->result();
+            $data['iuran'] = $this->iuran->export_pdf_iuran($kecamatan,$id_gampong,$semester);
+            $data['count'] = $this->m_data->get_between($start, $end, $id_gampong)->result();
+            $this->load->view('admin/pdf/v_iuran_pdf',$data); //memanggil view 
+
+        }
+    }
+
 
 
    function export_pdf_iuran_ketua_kecamatan(){
@@ -143,10 +167,6 @@ class iuran extends CI_Controller {
         $data['count'] = $this->db->query("SELECT sum(jumlah_iuran) as iuran from iuran WHERE (MONTH(tanggal_iuran) = '$bulan' AND YEAR(tanggal_iuran) = '$tahun')")->result_array();
         $this->load->view('admin/pdf/v_iuran_perbulan_pdf',$data); //memanggil 
         }}
-
-
-
-
 
 
 
@@ -413,6 +433,7 @@ class iuran extends CI_Controller {
 
             $this->load->view('admin/pdf/v_iuran_pertahun_pdf',$data); //memanggil 
             }}
+
 
 
 

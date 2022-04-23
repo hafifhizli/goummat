@@ -600,6 +600,18 @@ class M_data extends CI_Model
 		return $query;
 	}
 
+	function get_between2($start, $end, $id_gampong)
+	{
+		$query = $this->db->select_sum('jumlah_iuran', $alias = 'total')
+			->select('nama', 'id_kelas', 'gampong','kecamatan','jumlah_iuran','tanggal_iuran')
+			->from('iuran')
+			->where('tanggal_iuran BETWEEN "' . date('Y-m-d', strtotime($start)) . '" and "' . date('Y-m-d', strtotime($end)) . '"')
+			->where('id_kelas', $id_gampong)
+			->group_by('id_anggota')
+			->get();
+		return $query;
+	}
+
 	function iuran_kelas($start, $end)
 	{
 		$query =

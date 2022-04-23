@@ -213,6 +213,26 @@ class Admink extends CI_Controller
 		$this->load->view('admink/v_footer');
 	}
 
+	function export()
+	{
+		$this->load->helper('rupiah_helper');
+		$year = $this->input->get('year');
+		$semester = $this->input->get('semester');
+		$id_gampong = $this->input->get('id_gampong');
+		if ($semester == 1) {
+			$start = $year . '-01-01';
+			$end = $year . '-06-30';
+		} else {
+			$start = $year . '-07-01';
+			$end = $year . '-12-31';
+		}
+		$this->load->library('f_pdf');
+		$data['iuran_wajib'] = $this->m_data->get_data('tm_iuran_wajib')->result_array();
+		$data['dtiuran'] = $this->m_data->get_between2($start, $end, $id_gampong)->result();
+		var_dump($data['dtiuran']);
+		$this->load->view('admin/pdf/iuran_export',$data); //memanggil view 
+	}
+
 
 
 	function iuranwajib()
